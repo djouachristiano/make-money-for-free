@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Money-Making Methods - Global Earners Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: white;
+            border-radius: 50px;
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 600;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .page-header h1 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .page-header p {
+            color: #546e7a;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .search-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .search-box {
+            display: flex;
+            max-width: 600px;
+            margin: 0 auto 20px;
+        }
+        
+        .search-input {
+            flex: 1;
+            padding: 15px 20px;
+            border: 1px solid #ddd;
+            border-radius: 50px 0 0 50px;
+            font-size: 1rem;
+        }
+        
+        .search-btn {
+            padding: 15px 25px;
+            background: linear-gradient(90deg, #FF9A8B 0%, #FF6A88 100%);
+            color: white;
+            border: none;
+            border-radius: 0 50px 50px 0;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .filter-options {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .filter-btn {
+            padding: 8px 16px;
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn.active {
+            background: linear-gradient(90deg, #4ca1af 0%, #2c3e50 100%);
+            color: white;
+            border-color: #4ca1af;
+        }
+        
+        .filter-btn:hover:not(.active) {
+            background: #e9ecef;
+        }
+        
+        .methods-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        
+        .method-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .method-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .method-header {
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: linear-gradient(135deg, #4ca1af 0%, #2c3e50 100%);
+            color: white;
+        }
+        
+        .method-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.8rem;
+        }
+        
+        .method-title {
+            flex: 1;
+        }
+        
+        .method-title h3 {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+        
+        .method-title .category {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .method-info {
+            padding: 25px;
+        }
+        
+        .method-description {
+            color: #546e7a;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .method-details {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        
+        .detail-item {
+            text-align: center;
+        }
+        
+        .detail-value {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .detail-label {
+            font-size: 0.8rem;
+            color: #7f8c8d;
+        }
+        
+        .method-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .method-tag {
+            background: #f1f5f9;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #4ca1af;
+        }
+        
+        .method-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .action-btn {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .learn-more {
+            background: linear-gradient(90deg, #4ca1af 0%, #2c3e50 100%);
+            color: white;
+        }
+        
+        .save-method {
+            background: #f8f9fa;
+            color: #2c3e50;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: #7f8c8d;
+            font-size: 1.1rem;
+            grid-column: 1 / -1;
+        }
+        
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            border-radius: 10px;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 30px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-section a {
+            color: #c3cfe2;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .methods-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .search-box {
+                flex-direction: column;
+            }
+            
+            .search-input {
+                border-radius: 50px;
+                margin-bottom: 10px;
+            }
+            
+            .search-btn {
+                border-radius: 50px;
+            }
+            
+            .method-details {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .method-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+        
+        <div class="page-header">
+            <h1>Money-Making Methods</h1>
+            <p>Explore various ways to earn money online. Filter by category or search for specific methods to find the perfect opportunity for you.</p>
+        </div>
+        
+        <div class="search-section">
+            <div class="search-box">
+                <input type="text" class="search-input" id="method-search" placeholder="Search for a method...">
+                <button class="search-btn" onclick="searchMethods()">
+                    <i class="fas fa-search"></i> Search
+                </button>
+            </div>
+            
+            <div class="filter-options">
+                <button class="filter-btn active" onclick="filterMethods('all')">All Methods</button>
+                <button class="filter-btn" onclick="filterMethods('freelance')">Freelancing</button>
+                <button class="filter-btn" onclick="filterMethods('investing')">Investing</button>
+                <button class="filter-btn" onclick="filterMethods('content')">Content Creation</button>
+                <button class="filter-btn" onclick="filterMethods('surveys')">Surveys & Tasks</button>
+                <button class="filter-btn" onclick="filterMethods('affiliate')">Affiliate Marketing</button>
+                <button class="filter-btn" onclick="filterMethods('betting')">Betting & Predictions</button>
+            </div>
+        </div>
+        
+        <div class="methods-grid" id="methods-container">
+            <!-- Method cards will be populated by JavaScript -->
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Global Earners Hub</h3>
+                <p>Your trusted directory for legitimate online money-making opportunities around the world.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="countries.html">Countries</a></li>
+                    <li><a href="methods.html">Methods</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Disclaimer</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2023 Global Earners Hub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Method data
+        const methods = [
+            {
+                id: 1,
+                name: "Freelance Writing",
+                category: "freelance",
+                icon: "fas fa-pencil-alt",
+                description: "Get paid to write articles, blog posts, and content for websites. No experience required to start.",
+                difficulty: "Beginner",
+                earningPotential: "Medium",
+                timeRequired: "Flexible",
+                tags: ["Writing", "Content", "Remote", "Flexible"],
+                popularCountries: ["US", "UK", "India", "Nigeria"]
+            },
+            {
+                id: 2,
+                name: "Affiliate Marketing",
+                category: "affiliate",
+                icon: "fas fa-chart-line",
+                description: "Earn commissions by promoting products and services you love. Potential for passive income.",
+                difficulty: "Intermediate",
+                earningPotential: "High",
+                timeRequired: "Medium",
+                tags: ["Marketing", "Passive Income", "Commission", "Online"],
+                popularCountries: ["US", "UK", "Canada", "Australia"]
+            },
+            {
+                id: 3,
+                name: "Stock Trading",
+                category: "investing",
+                icon: "fas fa-chart-bar",
+                description: "Buy and sell stocks to profit from market movements. Requires research and risk management.",
+                difficulty: "Advanced",
+                earningPotential: "High",
+                timeRequired: "High",
+                tags: ["Investing", "Stocks", "Trading", "Financial"],
+                popularCountries: ["US", "UK", "Germany", "Japan"]
+            },
+            {
+                id: 4,
+                name: "YouTube Channel",
+                category: "content",
+                icon: "fas fa-video",
+                description: "Create and monetize video content on YouTube through ads, sponsorships, and memberships.",
+                difficulty: "Intermediate",
+                earningPotential: "High",
+                timeRequired: "High",
+                tags: ["Video", "Content", "Creative", "Entertainment"],
+                popularCountries: ["US", "India", "Brazil", "UK"]
+            },
+            {
+                id: 5,
+                name: "Online Surveys",
+                category: "surveys",
+                icon: "fas fa-clipboard-check",
+                description: "Share your opinion through online surveys and get paid for your time.",
+                difficulty: "Beginner",
+                earningPotential: "Low",
+                timeRequired: "Low",
+                tags: ["Surveys", "Easy", "Flexible", "Opinions"],
+                popularCountries: ["US", "UK", "Australia", "Germany"]
+            },
+            {
+                id: 6,
+                name: "Sports Betting",
+                category: "betting",
+                icon: "fas fa-trophy",
+                description: "Place bets on sports events. Requires knowledge of sports and understanding of odds.",
+                difficulty: "Intermediate",
+                earningPotential: "Variable",
+                timeRequired: "Medium",
+                tags: ["Sports", "Betting", "Gambling", "Predictions"],
+                popularCountries: ["UK", "Nigeria", "South Africa", "Kenya"]
+            },
+            {
+                id: 7,
+                name: "Dropshipping",
+                category: "affiliate",
+                icon: "fas fa-shipping-fast",
+                description: "Sell products without holding inventory. The supplier ships directly to your customers.",
+                difficulty: "Intermediate",
+                earningPotential: "Medium",
+                timeRequired: "Medium",
+                tags: ["E-commerce", "Business", "Products", "Online Store"],
+                popularCountries: ["US", "UK", "China", "Australia"]
+            },
+            {
+                id: 8,
+                name: "Graphic Design",
+                category: "freelance",
+                icon: "fas fa-palette",
+                description: "Create visual content for businesses, including logos, banners, and marketing materials.",
+                difficulty: "Intermediate",
+                earningPotential: "Medium",
+                timeRequired: "Flexible",
+                tags: ["Design", "Creative", "Visual", "Art"],
+                popularCountries: ["US", "UK", "India", "Philippines"]
+            },
+            {
+                id: 9,
+                name: "Cryptocurrency Trading",
+                category: "investing",
+                icon: "fas fa-coins",
+                description: "Buy and sell cryptocurrencies to profit from price fluctuations. High risk, high reward.",
+                difficulty: "Advanced",
+                earningPotential: "High",
+                timeRequired: "High",
+                tags: ["Crypto", "Trading", "Blockchain", "Digital Currency"],
+                popularCountries: ["US", "UK", "South Korea", "Japan"]
+            },
+            {
+                id: 10,
+                name: "Online Tutoring",
+                category: "freelance",
+                icon: "fas fa-chalkboard-teacher",
+                description: "Teach subjects you're knowledgeable about to students worldwide via video conferencing.",
+                difficulty: "Intermediate",
+                earningPotential: "Medium",
+                timeRequired: "Flexible",
+                tags: ["Teaching", "Education", "Knowledge", "Students"],
+                popularCountries: ["US", "UK", "India", "Canada"]
+            },
+            {
+                id: 11,
+                name: "App Testing",
+                category: "surveys",
+                icon: "fas fa-mobile-alt",
+                description: "Test mobile apps and websites for usability issues and get paid for your feedback.",
+                difficulty: "Beginner",
+                earningPotential: "Low",
+                timeRequired: "Low",
+                tags: ["Testing", "Apps", "Feedback", "Usability"],
+                popularCountries: ["US", "UK", "Germany", "Japan"]
+            },
+            {
+                id: 12,
+                name: "Blogging",
+                category: "content",
+                icon: "fas fa-blog",
+                description: "Create written content on a specific niche and monetize through ads, affiliates, or products.",
+                difficulty: "Intermediate",
+                earningPotential: "Medium",
+                timeRequired: "High",
+                tags: ["Writing", "Content", "Niche", "Monetization"],
+                popularCountries: ["US", "UK", "India", "Australia"]
+            }
+        ];
+
+        // Function to display methods
+        function displayMethods(methodList) {
+            const container = document.getElementById('methods-container');
+            container.innerHTML = '';
+            
+            if (methodList.length === 0) {
+                container.innerHTML = '<div class="no-results">No methods found matching your criteria. Try a different search or filter.</div>';
+                return;
+            }
+            
+            methodList.forEach(method => {
+                const card = document.createElement('div');
+                card.className = 'method-card';
+                card.setAttribute('data-category', method.category);
+                
+                card.innerHTML = `
+                    <div class="method-header">
+                        <div class="method-icon">
+                            <i class="${method.icon}"></i>
+                        </div>
+                        <div class="method-title">
+                            <h3>${method.name}</h3>
+                            <div class="category">${getCategoryName(method.category)}</div>
+                        </div>
+                    </div>
+                    <div class="method-info">
+                        <p class="method-description">${method.description}</p>
+                        
+                        <div class="method-details">
+                            <div class="detail-item">
+                                <div class="detail-value">${method.difficulty}</div>
+                                <div class="detail-label">Difficulty</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-value">${method.earningPotential}</div>
+                                <div class="detail-label">Earning Potential</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-value">${method.timeRequired}</div>
+                                <div class="detail-label">Time Required</div>
+                            </div>
+                        </div>
+                        
+                        <div class="method-tags">
+                            ${method.tags.map(tag => `<span class="method-tag">${tag}</span>`).join('')}
+                        </div>
+                        
+                        <div class="method-actions">
+                            <button class="action-btn learn-more" onclick="viewMethodDetails(${method.id})">Learn More</button>
+                            <button class="action-btn save-method" onclick="saveMethod(${method.id})">Save Method</button>
+                        </div>
+                    </div>
+                `;
+                
+                container.appendChild(card);
+            });
+        }
+
+        // Get category display name
+        function getCategoryName(category) {
+            const categories = {
+                'freelance': 'Freelancing',
+                'investing': 'Investing',
+                'content': 'Content Creation',
+                'surveys': 'Surveys & Tasks',
+                'affiliate': 'Affiliate Marketing',
+                'betting': 'Betting & Predictions'
+            };
+            return categories[category] || 'Other';
+        }
+
+        // Filter methods by category
+        function filterMethods(category) {
+            // Update active filter button
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            if (category === 'all') {
+                displayMethods(methods);
+            } else {
+                const filteredMethods = methods.filter(method => method.category === category);
+                displayMethods(filteredMethods);
+            }
+        }
+
+        // Search functionality
+        function searchMethods() {
+            const searchTerm = document.getElementById('method-search').value.toLowerCase();
+            const filteredMethods = methods.filter(method => 
+                method.name.toLowerCase().includes(searchTerm) ||
+                method.description.toLowerCase().includes(searchTerm) ||
+                method.tags.some(tag => tag.toLowerCase().includes(searchTerm))
+            );
+            
+            displayMethods(filteredMethods);
+        }
+
+        // View method details (would navigate to a detailed page)
+        function viewMethodDetails(methodId) {
+            const method = methods.find(m => m.id === methodId);
+            alert(`Viewing details for: ${method.name}\n\nIn a real application, this would navigate to a detailed page.`);
+            // window.location.href = `method-details.html?id=${methodId}`;
+        }
+
+        // Save method to favorites
+        function saveMethod(methodId) {
+            const method = methods.find(m => m.id === methodId);
+            alert(`Saved "${method.name}" to your favorites!`);
+            // In a real app, this would save to localStorage or send to a server
+        }
+
+        // Initialize the page with all methods
+        displayMethods(methods);
+
+        // Add event listener for Enter key in search
+        document.getElementById('method-search').addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                searchMethods();
+            }
+        });
+    </script>
+</body>
+</html>

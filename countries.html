@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countries - Global Earners Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: white;
+            border-radius: 50px;
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 600;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .page-header h1 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .page-header p {
+            color: #546e7a;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .search-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .search-box {
+            display: flex;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .search-input {
+            flex: 1;
+            padding: 15px 20px;
+            border: 1px solid #ddd;
+            border-radius: 50px 0 0 50px;
+            font-size: 1rem;
+        }
+        
+        .search-btn {
+            padding: 15px 25px;
+            background: linear-gradient(90deg, #FF9A8B 0%, #FF6A88 100%);
+            color: white;
+            border: none;
+            border-radius: 0 50px 50px 0;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .continents-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .continent-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .continent-header {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .continent-header:hover {
+            background: #f8f9fa;
+        }
+        
+        .continent-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .continent-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+        
+        .africa .continent-icon {
+            background: #e74c3c;
+        }
+        
+        .europe .continent-icon {
+            background: #3498db;
+        }
+        
+        .asia .continent-icon {
+            background: #f39c12;
+        }
+        
+        .americas .continent-icon {
+            background: #2ecc71;
+        }
+        
+        .oceania .continent-icon {
+            background: #9b59b6;
+        }
+        
+        .continent-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .continent-count {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        
+        .expand-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #7f8c8d;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .continent-card.expanded .expand-btn {
+            transform: rotate(45deg);
+        }
+        
+        .countries-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            padding: 0 20px 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, padding 0.3s ease;
+        }
+        
+        .continent-card.expanded .countries-list {
+            max-height: 1000px;
+            padding: 0 20px 20px;
+        }
+        
+        .country-item {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: transform 0.3s ease;
+        }
+        
+        .country-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .country-flag {
+            width: 40px;
+            height: 30px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .country-flag img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .country-name {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .country-methods {
+            margin-top: 5px;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+        }
+        
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            border-radius: 10px;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 30px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-section a {
+            color: #c3cfe2;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .search-box {
+                flex-direction: column;
+            }
+            
+            .search-input {
+                border-radius: 50px;
+                margin-bottom: 10px;
+            }
+            
+            .search-btn {
+                border-radius: 50px;
+            }
+            
+            .countries-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+        
+        <div class="page-header">
+            <h1>Find Money-Making Methods by Country</h1>
+            <p>Discover the best online earning opportunities available in your country. Click on a continent to explore countries and their popular money-making methods.</p>
+        </div>
+        
+        <div class="search-section">
+            <div class="search-box">
+                <input type="text" class="search-input" id="country-search" placeholder="Search for a country...">
+                <button class="search-btn" onclick="searchCountries()">
+                    <i class="fas fa-search"></i> Search
+                </button>
+            </div>
+        </div>
+        
+        <div class="continents-container">
+            <!-- Africa -->
+            <div class="continent-card africa">
+                <div class="continent-header" onclick="toggleContinent(this)">
+                    <div class="continent-title">
+                        <div class="continent-icon">
+                            <i class="fas fa-globe-africa"></i>
+                        </div>
+                        <div>
+                            <div class="continent-name">Africa</div>
+                            <div class="continent-count">5 countries</div>
+                        </div>
+                    </div>
+                    <button class="expand-btn">+</button>
+                </div>
+                <div class="countries-list">
+                    <!-- Countries will be populated by JavaScript -->
+                </div>
+            </div>
+            
+            <!-- Europe -->
+            <div class="continent-card europe">
+                <div class="continent-header" onclick="toggleContinent(this)">
+                    <div class="continent-title">
+                        <div class="continent-icon">
+                            <i class="fas fa-globe-europe"></i>
+                        </div>
+                        <div>
+                            <div class="continent-name">Europe</div>
+                            <div class="continent-count">2 countries</div>
+                        </div>
+                    </div>
+                    <button class="expand-btn">+</button>
+                </div>
+                <div class="countries-list">
+                    <!-- Countries will be populated by JavaScript -->
+                </div>
+            </div>
+            
+            <!-- Asia -->
+            <div class="continent-card asia">
+                <div class="continent-header" onclick="toggleContinent(this)">
+                    <div class="continent-title">
+                        <div class="continent-icon">
+                            <i class="fas fa-globe-asia"></i>
+                        </div>
+                        <div>
+                            <div class="continent-name">Asia</div>
+                            <div class="continent-count">2 countries</div>
+                        </div>
+                    </div>
+                    <button class="expand-btn">+</button>
+                </div>
+                <div class="countries-list">
+                    <!-- Countries will be populated by JavaScript -->
+                </div>
+            </div>
+            
+            <!-- Americas -->
+            <div class="continent-card americas">
+                <div class="continent-header" onclick="toggleContinent(this)">
+                    <div class="continent-title">
+                        <div class="continent-icon">
+                            <i class="fas fa-globe-americas"></i>
+                        </div>
+                        <div>
+                            <div class="continent-name">Americas</div>
+                            <div class="continent-count">3 countries</div>
+                        </div>
+                    </div>
+                    <button class="expand-btn">+</button>
+                </div>
+                <div class="countries-list">
+                    <!-- Countries will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Global Earners Hub</h3>
+                <p>Your trusted directory for legitimate online money-making opportunities around the world.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="countries.html">Countries</a></li>
+                    <li><a href="methods.html">Methods</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Disclaimer</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2023 Global Earners Hub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Country data organized by continent
+        const countriesByContinent = {
+            africa: [
+                {
+                    name: "Cameroon",
+                    flag: "https://flagcdn.com/w40/cm.png",
+                    methods: ["BetPawa", "Premier Bet", "Upwork", "MTN Mobile Money"]
+                },
+                {
+                    name: "Nigeria",
+                    flag: "https://flagcdn.com/w40/ng.png",
+                    methods: ["Upwork", "Jumia Affiliate", "Bet9ja", "Paystack"]
+                },
+                {
+                    name: "South Africa",
+                    flag: "https://flagcdn.com/w40/za.png",
+                    methods: ["Upwork", "Betway", "Takealot Affiliate", "OfferZen"]
+                },
+                {
+                    name: "Kenya",
+                    flag: "https://flagcdn.com/w40/ke.png",
+                    methods: ["Upwork", "SportPesa", "Jumia Affiliate", "M-Pesa"]
+                },
+                {
+                    name: "Ghana",
+                    flag: "https://flagcdn.com/w40/gh.png",
+                    methods: ["Upwork", "Betway", "Jumia Affiliate", "MTN Mobile Money"]
+                }
+            ],
+            europe: [
+                {
+                    name: "United Kingdom",
+                    flag: "https://flagcdn.com/w40/gb.png",
+                    methods: ["Upwork", "Fiverr", "Matched Betting", "Prolific"]
+                },
+                {
+                    name: "Germany",
+                    flag: "https://flagcdn.com/w40/de.png",
+                    methods: ["Upwork", "Lieferando", "Clickworker", "Fiverr"]
+                }
+            ],
+            asia: [
+                {
+                    name: "India",
+                    flag: "https://flagcdn.com/w40/in.png",
+                    methods: ["Upwork", "Swiggy Delivery", "Amazon MTurk", "Byju's"]
+                },
+                {
+                    name: "Australia",
+                    flag: "https://flagcdn.com/w40/au.png",
+                    methods: ["Upwork", "Airtasker", "Fiverr", "Prolific"]
+                }
+            ],
+            americas: [
+                {
+                    name: "United States",
+                    flag: "https://flagcdn.com/w40/us.png",
+                    methods: ["Amazon MTurk", "Upwork", "Etsy", "TaskRabbit"]
+                },
+                {
+                    name: "Canada",
+                    flag: "https://flagcdn.com/w40/ca.png",
+                    methods: ["Upwork", "SkipTheDishes", "Fiverr", "UserTesting"]
+                },
+                {
+                    name: "Brazil",
+                    flag: "https://flagcdn.com/w40/br.png",
+                    methods: ["Upwork", "iFood", "99Freelas", "Workana"]
+                }
+            ]
+        };
+
+        // Function to populate countries for each continent
+        function populateCountries() {
+            for (const continent in countriesByContinent) {
+                const continentCard = document.querySelector(`.continent-card.${continent}`);
+                const countriesList = continentCard.querySelector('.countries-list');
+                
+                countriesByContinent[continent].forEach(country => {
+                    const countryItem = document.createElement('div');
+                    countryItem.className = 'country-item';
+                    countryItem.innerHTML = `
+                        <div class="country-flag">
+                            <img src="${country.flag}" alt="${country.name} Flag">
+                        </div>
+                        <div>
+                            <div class="country-name">${country.name}</div>
+                            <div class="country-methods">${country.methods.slice(0, 2).join(', ')}${country.methods.length > 2 ? '...' : ''}</div>
+                        </div>
+                    `;
+                    
+                    // Add click event to view country details
+                    countryItem.addEventListener('click', function() {
+                        window.location.href = `country-detail.html?country=${country.name.toLowerCase()}`;
+                    });
+                    
+                    countriesList.appendChild(countryItem);
+                });
+            }
+        }
+
+        // Toggle continent expansion
+        function toggleContinent(header) {
+            const continentCard = header.parentElement;
+            continentCard.classList.toggle('expanded');
+        }
+
+        // Search functionality
+        function searchCountries() {
+            const searchTerm = document.getElementById('country-search').value.toLowerCase();
+            
+            // If search is empty, show all continents
+            if (!searchTerm) {
+                document.querySelectorAll('.continent-card').forEach(card => {
+                    card.style.display = 'block';
+                });
+                return;
+            }
+            
+            // Filter continents and countries based on search
+            document.querySelectorAll('.continent-card').forEach(card => {
+                const continent = card.classList[1]; // Get continent class (africa, europe, etc.)
+                const countries = countriesByContinent[continent];
+                let hasMatch = false;
+                
+                // Check if any country in this continent matches the search
+                if (countries) {
+                    for (const country of countries) {
+                        if (country.name.toLowerCase().includes(searchTerm) || 
+                            country.methods.some(method => method.toLowerCase().includes(searchTerm))) {
+                            hasMatch = true;
+                            break;
+                        }
+                    }
+                }
+                
+                // Show/hide continent based on search results
+                card.style.display = hasMatch ? 'block' : 'none';
+                
+                // If continent is shown, expand it
+                if (hasMatch) {
+                    card.classList.add('expanded');
+                }
+            });
+        }
+
+        // Initialize the page
+        populateCountries();
+
+        // Add event listener for Enter key in search
+        document.getElementById('country-search').addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                searchCountries();
+            }
+        });
+
+        // Expand first continent by default
+        document.querySelector('.continent-card').classList.add('expanded');
+    </script>
+</body>
+</html>

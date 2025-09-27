@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Earners Hub - Make Money Online</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 1000vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: pageFadeIn 20s ease forwards;
+        }
+        @keyframes pageFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+        .header {
+            background: linear-gradient(90deg, #2c3e50 0%, #4ca1af 100%);
+            width: 100%;
+            max-width: 1200px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+            animation: slideDown 0.5s ease;
+        }
+        
+        @keyframes slideDown {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            font-size: 28px;
+            color: #fff;
+            background: linear-gradient(135deg, #FF9A8B 0%, #FF6A88 100%);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover .logo-icon {
+            transform: rotate(15deg);
+        }
+        
+        .logo-text {
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 17px;
+            padding: 10px 5px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(90deg, #FF9A8B 0%, #FF6A88 100%);
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease;
+            border-radius: 3px;
+        }
+        
+        .nav-links a:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+        
+        .nav-links a.active::after {
+            transform: scaleX(1);
+        }
+        
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-signin {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+        
+        .btn-signin:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .btn-signup {
+            background: linear-gradient(90deg, #FF9A8B 0%, #FF6A88 100%);
+            border: none;
+            color: white;
+        }
+        
+        .btn-signup:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Main Content Styles */
+        .container {
+            max-width: 100%;
+            width: 100%;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)), url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80');
+            background-size: cover;
+            background-position: center;
+            border-radius: 15px;
+            padding: 60px 40px;
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+            animation: fadeIn 1s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+        
+        .search-box {
+            display: flex;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 50px;
+            overflow: hidden;
+        }
+        
+        .search-input {
+            flex: 1;
+            padding: 15px 20px;
+            border: none;
+            font-size: 1rem;
+            outline: none;
+        }
+        
+        .search-btn {
+            padding: 15px 25px;
+            background: linear-gradient(90deg, #FF9A8B 0%, #FF6A88 100%);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .search-btn:hover {
+            background: linear-gradient(90deg, #FF6A88 0%, #FF9A8B 100%);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin: 40px 0 30px;
+            color: #2c3e50;
+            font-size: 2rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #FF9A8B 0%, #FF6A88 100%);
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+        
+        .categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        
+        .category-btn {
+            padding: 12px 25px;
+            background: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .category-btn.active {
+            background: linear-gradient(90deg, #FF9A8B 0%, #FF6A88 100%);
+            color: white;
+        }
+        
+        .category-btn:hover:not(.active) {
+            background: #f1f1f1;
+            transform: translateY(-2px);
+        }
+        
+        .country-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        
+        .country-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .country-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .country-flag {
+            height: 160px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .country-flag img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .country-card:hover .country-flag img {
+            transform: scale(1.05);
+        }
+        
+        .country-info {
+            padding: 20px;
+        }
+        
+        .country-info h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .country-info p {
+            color: #546e7a;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .methods {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .method-tag {
+            background: #f1f5f9;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #4ca1af;
+            transition: all 0.3s ease;
+        }
+        
+        .method-tag:hover {
+            background: #4ca1af;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .method-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        
+        .method-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .method-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .method-icon {
+            height: 120px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #4ca1af 0%, #2c3e50 100%);
+            font-size: 40px;
+            color: white;
+            transition: all 0.5s ease;
+        }
+        
+        .method-card:hover .method-icon {
+            background: linear-gradient(135deg, #2c3e50 0%, #4ca1af 100%);
+        }
+        
+        .method-info {
+            padding: 20px;
+        }
+        
+        .method-info h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .method-info p {
+            color: #546e7a;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .method-rating {
+            color: #FF9A8B;
+            margin-bottom: 15px;
+        }
+        
+        .method-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background: linear-gradient(90deg, #4ca1af 0%, #2c3e50 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .method-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(90deg, #2c3e50 0%, #4ca1af 100%);
+        }
+        
+        /* About and Contact Sections */
+        .info-section {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin: 50px 0;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            scroll-margin-top: 100px;
+            animation: fadeUp 0.5s ease;
+        }
+        
+        @keyframes fadeUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .info-section h2 {
+            color: #2c3e50;
+            margin-bottom: 25px;
+            font-size: 2rem;
+            text-align: center;
+        }
+        
+        .info-section p {
+            color: #546e7a;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .info-section ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .info-section li {
+            color: #546e7a;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .contact-card {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-card i {
+            font-size: 40px;
+            color: #4ca1af;
+            margin-bottom: 15px;
+        }
+        
+        .contact-card h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .contact-card p {
+            color: #546e7a;
+            margin-bottom: 0;
+        }
+        
+        .contact-card a {
+            color: #4ca1af;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-card a:hover {
+            color: #2c3e50;
+            text-decoration: underline;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .team-member {
+            text-align: center;
+        }
+        
+        .team-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 15px;
+            border: 5px solid #f1f5f9;
+            transition: all 0.3s ease;
+        }
+        
+        .team-member:hover .team-img {
+            border-color: #4ca1af;
+            transform: scale(1.05);
+        }
+        
+        .team-member h3 {
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .team-member p {
+            color: #546e7a;
+            margin-bottom: 15px;
+        }
+        
+        /* Auth Section */
+        .auth-section {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin: 50px 0;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            display: none;
+        }
+        
+        .auth-section.active {
+            display: block;
+            animation: fadeUp 0.5s ease;
+        }
+        
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .auth-tab {
+            padding: 15px 20px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #546e7a;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .auth-tab.active {
+            color: #4ca1af;
+            border-bottom: 3px solid #4ca1af;
+        }
+        
+        .auth-form {
+            display: none;
+        }
+        
+        .auth-form.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus {
+            border-color: #4ca1af;
+            box-shadow: 0 0 0 2px rgba(76, 161, 175, 0.2);
+            outline: none;
+        }
+        
+        .auth-submit {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(90deg, #4ca1af 0%, #2c3e50 100%);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .auth-submit:hover {
+            background: linear-gradient(90deg, #2c3e50 0%, #4ca1af 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .auth-footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #546e7a;
+        }
+        
+        .auth-footer a {
+            color: #4ca1af;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .auth-footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            border-radius: 10px;
+            margin-top: 40px;
+            width: 100%;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 30px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-section a {
+            color: #c3cfe2;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #FF9A8B 0%, #FF6A88 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 99;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .nav-links {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .auth-buttons {
+                margin-top: 10px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .search-box {
+                flex-direction: column;
+                border-radius: 10px;
+            }
+            
+            .search-input {
+                border-radius: 10px 10px 0 0;
+                margin-bottom: 0;
+            }
+            
+            .search-btn {
+                border-radius: 0 0 10px 10px;
+            }
+            
+            .info-section {
+                padding: 25px;
+            }
+            
+            .auth-section {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <div class="logo-icon">
+                <i class="fas fa-globe-americas"></i>
+            </div>
+            <div class="logo-text">Global Earners Hub</div>
+        </div>
+        
+        <nav class="nav-links">
+            <a href="#" class="active">HOME</a>
+            <a href="#about-section">ABOUT</a>
+            <a href="#contact-section">CONTACT</a>
+            <a href="countries.html" class="nav-link">COUNTRIES</a>
+            <a href="methods.html" class="nav-link">METHODS</a>
+            <a href="blog.html">BLOG</a>
+        </nav>
+        
+        <div class="auth-buttons">
+<!-- Or if you prefer links -->
+<a href="auth.html" class="btn btn-signin">SIGN IN</a>
+<a href="auth.html" class="btn btn-signup">SIGN UP</a>
+        </div>
+    </header>
+    
+    <div class="container">
+        <section class="hero">
+            <h1>Discover Ways to Make Money Online</h1>
+            <p>Explore our curated directory of legitimate online money-making opportunities from around the world. Find the perfect method that works for your skills and location.</p>
+            
+            <div class="search-box">
+                <input type="text" class="search-input" placeholder="Search for methods or countries...">
+                <button class="search-btn">Search</button>
+            </div>
+        </section>
+        
+        <h2 class="section-title">Browse by Category</h2>
+        <div class="categories">
+            <button class="category-btn active"><a href="https://www.swagbucks.com/">All Methods</a></button>
+            <button class="category-btn"><a href="https://www.freelancer.com/">Freelencing</a></button>
+            <button class="category-btn"><a href="#">surveys</a></button>
+            <button class="category-btn"><a href="etsy.com">Investing</a></button>
+            <button class="category-btn"><a href="youtube.com">content Creation</a></button>
+            <button class="category-btn"><a href="https://www.betpawa.com/">Betting</a></button>
+            <a href="#"><button class="category-btn">More</button></a>
+            
+        </div>
+        
+        <h2 class="section-title">Popular by Country</h2>
+        <div class="country-cards">
+            <div class="country-card">
+                <div class="country-flag">
+                    <img src="https://flagcdn.com/w320/cm.png" alt="Cameroon Flag">
+                </div>
+                <div class="country-info">
+                    <h3>Cameroon</h3>
+                    <p>Discover the best ways to make money online in Cameroon, tailored to local payment methods and opportunities.</p>
+                    <div class="methods">
+                        <span class="method-tag">BetPawa</span>
+                        <span class="method-tag">Premier Bet</span>
+                        <span class="method-tag">Upwork</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="country-card">
+                <div class="country-flag">
+                    <img src="https://flagcdn.com/w320/ng.png" alt="Nigeria Flag">
+                </div>
+                <div class="country-info">
+                    <h3>Nigeria</h3>
+                    <p>Explore online earning opportunities popular in Nigeria, from freelancing to affiliate marketing.</p>
+                    <div class="methods">
+                        <span class="method-tag">Upwork</span>
+                        <span class="method-tag">Jumia Affiliate</span>
+                        <span class="method-tag">Bet9ja</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="country-card">
+                <div class="country-flag">
+                    <img src="https://flagcdn.com/w320/us.png" alt="USA Flag">
+                </div>
+                <div class="country-info">
+                    <h3>United States</h3>
+                    <p>Find the most popular ways to make money online in the US, including gig economy platforms and more.</p>
+                    <div class="methods">
+                        <span class="method-tag">Amazon MTurk</span>
+                        <span class="method-tag">Upwork</span>
+                        <span class="method-tag">Etsy</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <h2 class="section-title">Featured Methods</h2>
+        <div class="method-grid">
+            <div class="method-card">
+                <div class="method-icon">
+                    <i class="fas fa-pencil-alt"></i>
+                </div>
+                <div class="method-info">
+                    <h3>Freelance Writing</h3>
+                    <div class="method-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p>Get paid to write articles, blog posts, and content for websites. No experience required to start.</p>
+                    <a href="#" class="method-link">Learn More</a>
+                </div>
+            </div>
+            
+            <div class="method-card">
+                <div class="method-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="method-info">
+                    <h3>Affiliate Marketing</h3>
+                    <div class="method-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <p>Earn commissions by promoting products and services you love. Potential for passive income.</p>
+                    <a href="#" class="method-link">Learn More</a>
+                </div>
+            </div>
+            
+            <div class="method-card">
+                <div class="method-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <div class="method-info">
+                    <h3>Survey Apps</h3>
+                    <div class="method-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <p>Share your opinion and get paid through mobile apps. Easy way to earn small amounts regularly.</p>
+                    <a href="#" class="method-link">Learn More</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Auth Section -->
+        <section id="auth-section" class="auth-section">
+            <div class="auth-tabs">
+                <div class="auth-tab active" onclick="switchAuthTab('signin')">Sign In</div>
+                <div class="auth-tab" onclick="switchAuthTab('signup')">Sign Up</div>
+            </div>
+            
+            <form class="auth-form active" id="signin-form">
+                <div class="form-group">
+                    <label for="signin-email">Email</label>
+                    <input type="email" id="signin-email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="signin-password">Password</label>
+                    <input type="password" id="signin-password" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="auth-submit">Sign In</button>
+                <div class="auth-footer">
+                    <p>Don't have an account? <a href="#" onclick="switchAuthTab('signup'); return false;">Sign Up</a></p>
+                </div>
+            </form>
+            
+            <form class="auth-form" id="signup-form">
+                <div class="form-group">
+                    <label for="signup-name">Full Name</label>
+                    <input type="text" id="signup-name" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-email">Email</label>
+                    <input type="email" id="signup-email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Password</label>
+                    <input type="password" id="signup-password" placeholder="Create a password" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-country">Country</label>
+                    <input type="text" id="signup-country" placeholder="Enter your country" required>
+                </div>
+                <button type="submit" class="auth-submit">Sign Up</button>
+                <div class="auth-footer">
+                    <p>Already have an account? <a href="#" onclick="switchAuthTab('signin'); return false;">Sign In</a></p>
+                </div>
+            </form>
+        </section>
+        
+        <!-- About Section -->
+        <section id="about-section" class="info-section">
+            <h2>About Global Earners Hub</h2>
+            <p>Welcome to Global Earners Hub, your comprehensive directory for legitimate online money-making opportunities from around the world. Our mission is to help people discover reliable ways to earn income online, regardless of their location or background.</p>
+            
+            <p>We understand that the internet is filled with both amazing opportunities and potential scams. That's why we've created this platform to curate and verify the best ways to make money online, with a special focus on country-specific opportunities that work with local payment methods.</p>
+            
+            <p>Our team researches and tests each method to ensure it's legitimate, accessible, and profitable. We provide detailed information about each opportunity, including:</p>
+            
+            <ul>
+                <li>Step-by-step guides on how to get started</li>
+                <li>Realistic earning potential</li>
+                <li>Country availability and restrictions</li>
+                <li>Payment methods and withdrawal options</li>
+                <li>User reviews and ratings</li>
+            </ul>
+            
+            <p>Whether you're looking for a side hustle, freelance opportunities, or a full-time online career, Global Earners Hub is your trusted resource for finding vetted money-making methods that actually work.</p>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Team Member" class="team-img">
+                    <h3>Doua Chris</h3>
+                    <p>Founder & CEO</p>
+                </div>
+                
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Team Member" class="team-img">
+                    <h3>John beck</h3>
+                    <p>Content Director</p>
+                </div>
+                
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Team Member" class="team-img">
+                    <h3>Michael Sprey</h3>
+                    <p>Tech Lead</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Contact Section -->
+        <section id="contact-section" class="info-section">
+            <h2>Contact Us</h2>
+            <p>Have questions, suggestions, or need help finding the right money-making method for you? We'd love to hear from you! Reach out to us using any of the contact methods below, and our team will get back to you as soon as possible.</p>
+            
+            <div class="contact-info">
+                <div class="contact-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email Us</h3>
+                    <p><a href="mailto:djoua5887@gmail.com">djoua5887@gmail.com</a></p>
+                </div>
+                
+                <div class="contact-card">
+                    <i class="fas fa-phone"></i>
+                    <h3>Call Us</h3>
+                    <p><a href="tel:+237671737438">+237 671 737 438</a></p>
+                    <p><a href="tel:+237690390904">+237 690 390 904</a></p>
+                </div>
+                
+                <div class="contact-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Visit Us</h3>
+                    <p>Digital Plaza, 3rd Floor</p>
+                    <p>Yaoundé, Cameroon</p>
+                </div>
+            </div>
+            
+            <p style="text-align: center; margin-top: 30px;">We typically respond to all inquiries within 24 hours. For specific questions about money-making methods, please include the country you're based in and your skillset to help us provide the most relevant advice.</p>
+        </section>
+    </div>
+    
+    <div class="back-to-top" id="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+    
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Global Earners Hub</h3>
+                <p>Your trusted directory for legitimate online money-making opportunities around the world.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#about-section">About</a></li>
+                    <li><a href="#contact-section">Contact</a></li>
+                    <li><a href="#">Countries</a></li>
+                    <li><a href="#">Methods</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Disclaimer</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2023 Global Earners Hub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Add active class to clicked nav item
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelectorAll('.nav-links a').forEach(item => {
+                    item.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+        
+        // Add active class to clicked category button
+        document.querySelectorAll('.category-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                document.querySelectorAll('.category-btn').forEach(item => {
+                    item.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Show authentication section
+        function showAuth(formType) {
+            const authSection = document.getElementById('auth-section');
+            authSection.classList.add('active');
+            
+            // Scroll to auth section
+            window.scrollTo({
+                top: authSection.offsetTop - 100,
+                behavior: 'smooth'
+            });
+            
+            // Switch to the requested form
+            switchAuthTab(formType);
+        }
+        
+        // Switch between sign in and sign up tabs
+        function switchAuthTab(formType) {
+            // Update tabs
+            document.querySelectorAll('.auth-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show the selected form
+            document.querySelectorAll('.auth-form').forEach(form => {
+                form.classList.remove('active');
+            });
+            
+            if (formType === 'signin') {
+                document.querySelector('.auth-tab:first-child').classList.add('active');
+                document.getElementById('signin-form').classList.add('active');
+            } else {
+                document.querySelector('.auth-tab:last-child').classList.add('active');
+                document.getElementById('signup-form').classList.add('active');
+            }
+        }
+        
+        // Back to top button
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Form submission prevention
+        document.getElementById('signin-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Sign in functionality would be implemented here!');
+            this.reset();
+        });
+        
+        document.getElementById('signup-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Sign up functionality would be implemented here!');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

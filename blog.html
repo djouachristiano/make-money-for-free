@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Global Earners Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: white;
+            border-radius: 50px;
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 600;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .page-header h1 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .page-header p {
+            color: #546e7a;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .blog-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        
+        .category-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .category-header {
+            padding: 25px;
+            background: linear-gradient(135deg, #4ca1af 0%, #2c3e50 100%);
+            color: white;
+        }
+        
+        .category-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .category-title {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+        
+        .category-description {
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+        
+        .blog-list {
+            padding: 20px;
+        }
+        
+        .blog-item {
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .blog-item:last-child {
+            border-bottom: none;
+        }
+        
+        .blog-item h3 {
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+        
+        .blog-item p {
+            color: #546e7a;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .blog-meta {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .view-all {
+            display: block;
+            text-align: center;
+            padding: 15px;
+            background: #f8f9fa;
+            color: #4ca1af;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+        
+        .view-all:hover {
+            background: #e9ecef;
+        }
+        
+        .featured-posts {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-title {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #FF9A8B 0%, #FF6A88 100%);
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+        
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .post-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .post-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .post-image {
+            height: 160px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .post-content {
+            padding: 20px;
+        }
+        
+        .post-category {
+            display: inline-block;
+            background: #4ca1af;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .post-title {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .post-excerpt {
+            color: #546e7a;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+        
+        .read-more {
+            color: #4ca1af;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            border-radius: 10px;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 30px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-section a {
+            color: #c3cfe2;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .blog-categories {
+                grid-template-columns: 1fr;
+            }
+            
+            .posts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+        
+        <div class="page-header">
+            <h1>Global Earners Hub Blog</h1>
+            <p>Your source for expert advice, success stories, and the latest trends in online money-making opportunities worldwide.</p>
+        </div>
+        
+        <div class="featured-posts">
+            <h2 class="section-title">Featured Posts</h2>
+            <div class="posts-grid">
+                <div class="post-card">
+                    <div class="post-image" style="background-image: url('https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')"></div>
+                    <div class="post-content">
+                        <span class="post-category">Success Stories</span>
+                        <h3 class="post-title">How I Made $5,000/month with Freelance Writing</h3>
+                        <p class="post-excerpt">Discover the journey of Sarah from Nigeria who turned her writing passion into a sustainable income stream.</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </div>
+                
+                <div class="post-card">
+                    <div class="post-image" style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')"></div>
+                    <div class="post-content">
+                        <span class="post-category">How-To Guides</span>
+                        <h3 class="post-title">The Complete Guide to Affiliate Marketing in 2023</h3>
+                        <p class="post-excerpt">Step-by-step instructions to start earning commissions with affiliate marketing, even as a beginner.</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </div>
+                
+                <div class="post-card">
+                    <div class="post-image" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')"></div>
+                    <div class="post-content">
+                        <span class="post-category">Trends & News</span>
+                        <h3 class="post-title">Top 5 Emerging Money-Making Trends in Africa</h3>
+                        <p class="post-excerpt">Explore the latest opportunities gaining traction across African countries in the digital economy.</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <h2 class="section-title">Blog Categories</h2>
+        <div class="blog-categories">
+            <!-- Beginner's Guide Category -->
+            <div class="category-card">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h2 class="category-title">Beginner's Guides</h2>
+                    <p class="category-description">Step-by-step tutorials for those new to making money online</p>
+                </div>
+                <div class="blog-list">
+                    <div class="blog-item">
+                        <h3>How to Choose Your First Money-Making Method</h3>
+                        <p>A guide to selecting the right opportunity based on your skills, time, and goals.</p>
+                        <div class="blog-meta">
+                            <span class="meta-item"><i class="far fa-clock"></i> 10 min read</span>
+                            <span class="meta-item"><i class="far fa-calendar"></i> Apr 15, 2023</span>
+                        </div>
+                    </div>
+                    <div class="blog-item">
+                        <h3>Setting Up Your Online Presence: A Beginner's Checklist</h3>
+                        <p>Essential steps to establish yourself professionally in the digital space.</p>
+                        <div class="blog-meta">
+                            <span class="meta-item"><i class="far fa-clock"></i> 8 min read</span>
+                            <span class="meta-item"><i class="far fa-calendar"></i> Mar 22, 2023</span>
+                        </div>
+                    </div>
+                    <div class="blog-item">
+                        <h3>Understanding Online Payment Methods Worldwide</h3>
+                        <p>From PayPal to Mobile Money - how to get paid no matter where you are.</p>
+                        <div class="blog-meta">
+                            <span class="meta-item"><i class="far fa-clock"></i> 12 min read</span>
+                            <span class="meta-item"><i class="far fa-calendar"></i> Feb 28, 2023</span>
+                        </div>
+                    </div>
+                    <a href="#" class="view-all">View All Beginner's Guides →</a>
+                </div>
+            </div>
+            
+            <!-- Success Stories Category -->
+            <div class="category-card">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h2 class="category-title">Success Stories</h2>
+                    <p class="category-description">Real people sharing their journeys to financial freedom</p>
+                </div>
+                <div class="blog-list">
+                    <div class="blog-item">
+                        <h3>From Student to Full-Time Freelancer: Maria's Story</h3>
+                        <p>How a university student in Cameroon built a sustainable income through Upwork.</p>
+                        <div class="blog-meta">
+                            <span class="meta-item"><i class="far fa-clock"></i> 15 min read</span>
+                            <span class="meta-item"><i class="far fa-calendar"></i> May 5, 2023</span>
+                        </div>
+                    </div>
+                    <div class="blog-item">
+                        <h3>How David Built a 6-Figure Affiliate Marketing Business</h3>
+                        <p>The strategies and mindset that helped a Nigerian entrepreneur succeed online.</p>
+                        <div class="blog-meta">
+                            <span class="meta-item"><i class="far fa-clock"></i> 18 min read</span>
+                            <span class="meta-item"><i class="far fa-calendar"></i> Apr 10, 2023</span>
+                        </div>
+                    </div>
+                    <div class="blog-item">
+                        <h3>From Unemployed to Digital Nomad: Amina's Transformation</h3>
+                        <p>A Kenyan woman's journey from job loss to location-independent income.</p>
+                        <div class="blog-meta">
+                            <span class="meta-item"><i class="far fa-clock"></i> 14 min read</span>
+                            <span class="meta-item"><i class="far fa-calendar"></i> Mar 15, 2023</span>
+                        </div>
+                    </div>
+                    <a href="#" class="view-all">View All Success Stories →</a>
+                </div>
+            </div>
+            
+            <!-- Advanced Strategies Category -->
+            <div class="category-card">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h2 class="category-title">Advanced Strategies</h2>
+                    <p class="category-description">For those ready to scale their online income</p>
+                </div>
+                <div class="blog-list">
+                    <div class="blog-item">
+                        <h3>Scaling Your Side Hustle into a Full Business</h3>
+                        <p>When and how to transition from part-time earning to entrepreneurship.</p>
+                        <div class="blog-meta">
+                            <span class="meta-item"><i class="far fa-clock"></i> 20 min read</span>
+                            <span class="meta-item"><i class="far fa-calendar"></i> Jun 2, 2023</span>
+                        </div>
+                    </div>
+                    <div class="blog-item">
+                        <h3>Automating Your Income: Systems for Passive Revenue</h3>
+                        <p>How to build income streams that work while you sleep.</p>
+                        <div class="blog-meta">
+                            <span class="meta-item"><i class="far fa-clock"></i> 16 min read</span>
+                            <span class="meta-item"><i class="far fa-calendar"></i> May 18, 2023</span>
+                        </div>
+                    </div>
+                    <div class="blog-item">
+                        <h3>Diversifying Your Online Income Portfolio</h3>
+                        <p>Why and how to create multiple revenue streams for financial stability.</p>
+                        <div class="blog-meta">
+                            <span class="meta-item"><i class="far fa-clock"></i> 22 min read</span>
+                            <span class="meta-item"><i class="far fa-calendar"></i> Apr 30, 2023</span>
+                        </div>
+                    </div>
+                    <a href="#" class="view-all">View All Advanced Strategies →</a>
+                </div>
+            </div>
+            
+            <!-- Country-Specific Guides Category -->
+            <div class="category-card">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <i class="fas fa-globe-americas"></i>
+                    </div>
+                    <h2 class="category-title">Country-Specific Guides</h2>
+                    <p class="category-description">Tailored advice for different regions and markets</p>
+                </div>
+                <div class="blog-list">
+                    <div class="blog-item">
+                        <h3>Making Money Online in Cameroon: Complete 2023 Guide</h3>
+                        <p>Best platforms, payment methods, and opportunities for Cameroonians.</p>
+                        <div class="blog-meta">
+                            <span class="meta-item"><i class="far fa-clock"></i> 25 min read</span>
+                            <span class="meta-item"><i class="far fa-calendar"></i> May 12, 2023</span>
+                        </div>
+                    </div>
+                    <div class="blog-item">
+                        <h3>Nigerian Digital Economy: Opportunities and Challenges</h3>
+                        <p>An in-depth look at the unique landscape for online earners in Nigeria.</p>
+                        <div class="blog-meta">
+                            <span class="meta-item"><i class="far fa-clock"></i> 18 min read</span>
+                            <span class="meta-item"><i class="far fa-calendar"></i> Apr 25, 2023</span>
+                        </div>
+                    </div>
+                    <div class="blog-item">
+                        <h3>US-Based Opportunities for International Workers</h3>
+                        <p>How to access American platforms and clients from anywhere in the world.</p>
+                        <div class="blog-meta">
+                            <span class="meta-item"><i class="far fa-clock"></i> 20 min read</span>
+                            <span class="meta-item"><i class="far fa-calendar"></i> Mar 30, 2023</span>
+                        </div>
+                    </div>
+                    <a href="#" class="view-all">View All Country Guides →</a>
+                </div>
+            </div>
+            
+            <!-- Tools & Resources Category -->
+            <div class="category-card">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h2 class="category-title">Tools & Resources</h2>
+                    <p class="category-description">Essential apps, software, and resources for online earners</p>
+                </div>
+                <div class="blog-list">
+                    <div class="blog-item">
+                        <h3>Top 10 Free Tools Every Online Earner Should Use</h3>
+                        <p>Productivity, marketing, and financial tools that won't cost you a dime.</p>
+                        <div class="blog-meta">
+                            <span class="meta-item"><i class="far fa-clock"></i> 14 min read</span>
+                            <span class="meta-item"><i class="far fa-calendar"></i> Jun 8, 2023</span>
+                        </div>
+                    </div>
+                    <div class="blog-item">
+                        <h3>Comparing Payment Processors: Which Is Right for You?</h3>
+                        <p>PayPal, Payoneer, Wise, Mobile Money - a comprehensive comparison.</p>
+                        <div class="blog-meta">
+                            <span class="meta-item"><i class="far fa-clock"></i> 16 min read</span>
+                            <span class="meta-item"><i class="far fa-calendar"></i> May 22, 2023</span>
+                        </div>
+                    </div>
+                    <div class="blog-item">
+                        <h3>Free Learning Resources to Upgrade Your Skills</h3>
+                        <p>Where to learn new money-making skills without breaking the bank.</p>
+                        <div class="blog-meta">
+                            <span class="meta-item"><i class="far fa-clock"></i> 12 min read</span>
+                            <span class="meta-item"><i class="far fa-calendar"></i> Apr 18, 2023</span>
+                        </div>
+                    </div>
+                    <a href="#" class="view-all">View All Tools & Resources →</a>
+                </div>
+            </div>
+            
+            <!-- Industry News & Trends Category -->
+            <div class="category-card">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    <h2 class="category-title">Industry News & Trends</h2>
+                    <p class="category-description">Stay updated with the latest in the online earning space</p>
+                </div>
+                <div class="blog-list">
+                    <div class="blog-item">
+                        <h3>The Rise of AI in Freelancing: Threat or Opportunity?</h3>
+                        <p>How artificial intelligence is changing the landscape for online workers.</p>
+                        <div class="blog-meta">
+                            <span class="meta-item"><i class="far fa-clock"></i> 15 min read</span>
+                            <span class="meta-item"><i class="far fa-calendar"></i> Jun 15, 2023</span>
+                        </div>
+                    </div>
+                    <div class="blog-item">
+                        <h3>Cryptocurrency and Online Earnings: What You Need to Know</h3>
+                        <p>The growing role of digital currencies in the global freelance economy.</p>
+                        <div class="blog-meta">
+                            <span class="meta-item"><i class="far fa-clock"></i> 18 min read</span>
+                            <span class="meta-item"><i class="far fa-calendar"></i> May 30, 2023</span>
+                        </div>
+                    </div>
+                    <div class="blog-item">
+                        <h3>Remote Work Legislation Changes Around the World</h3>
+                        <p>How new laws are affecting digital nomads and remote workers globally.</p>
+                        <div class="blog-meta">
+                            <span class="meta-item"><i class="far fa-clock"></i> 20 min read</span>
+                            <span class="meta-item"><i class="far fa-calendar"></i> May 8, 2023</span>
+                        </div>
+                    </div>
+                    <a href="#" class="view-all">View All News & Trends →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Global Earners Hub</h3>
+                <p>Your trusted directory for legitimate online money-making opportunities around the world.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="countries.html">Countries</a></li>
+                    <li><a href="methods.html">Methods</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Disclaimer</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2023 Global Earners Hub. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
